@@ -33,5 +33,31 @@ This portfolio is a living canvas where I showcase who I am, what I build, and h
 - Google Fonts (Inter)
 - Simple Icons CDN for Tech Logos
 
-## 📁 Folder Structure
+
+## ⚙️ How to Use
+
+1. Clone or download this repo.
+2. Make sure your `vivek1.png`, `resume.pdf`, and `music.mp3` files are placed in the root directory.
+3. Open `index.html` in your browser. That’s it!
+
+## 💡 Tips
+
+- Replace `"vivek1.png"`, `"music.mp3"` and `"resume.pdf"` with your own media assets.
+- Host on GitHub Pages, Netlify, or Vercel for free deployment.
+
+## 📬 Contact
+
+Feel free to connect with me via email: **vivekdubey5960@gmail.com**
+
+## 🙏 Acknowledgments
+
+- Inspired by creative portfolios across the web.
+- Thanks to [AOS](https://michalsnik.github.io/aos/) for beautiful scroll animations.
+- Font used: [Inter](https://fonts.google.com/specimen/Inter) by Rasmus Andersson.
+
+---
+
+**Made with passion, purpose, and pixels.**
+
+
 
