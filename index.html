@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vivek - Full Stack Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-color: rgba(255, 255, 255, 0.05);
+      --text-color: #ffffff;
+      --accent-color: #ef4444;
+      --glass-blur: 10px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: none;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+      background-size: 400% 400%;
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      overflow-x: hidden;
+      animation: bgAnim 20s ease infinite;
+    }
+
+    @keyframes bgAnim {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      background: var(--card-color);
+      backdrop-filter: blur(var(--glass-blur));
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      max-width: 1100px;
+      width: 100%;
+      gap: 40px;
+      animation: slideIn 0.8s ease-in-out;
+      transition: all 0.3s ease;
+    }
+    .container:hover {
+  transform: perspective(1000px) rotateX(10deg) rotateY(10deg);
+}
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .text-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .text-content h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.2;
+      background: linear-gradient(to right, #f43f5e, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .text-content p {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #cbd5e1;
+    }
+
+    #dynamicGreeting {
+      font-size: 1.1rem;
+      color: #facc15;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #typing, #quote {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #94a3b8;
+      height: 24px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .buttons button,
+    .hire-btn {
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 8px #ef4444;
+    }
+
+    .view-btn {
+      background-color: var(--accent-color);
+      color: white;
+    }
+
+    .resume-btn, .hire-btn {
+      background: transparent;
+      color: white;
+      border: 1px solid #334155;
+    }
+
+    .view-btn:hover, .resume-btn:hover, .hire-btn:hover {
+      box-shadow: 0 0 12px #f87171;
+      transform: translateY(-2px);
+    }
+
+    .hire-btn {
+      width: fit-content;
+    }
+    
+
+    .tech-stack {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .tech-stack img {
+      height: 32px;
+      width: 32px;
+      transition: all 0.3s ease;
+    }
+
+    .tech-stack img:hover {
+      transform: scale(1.3);
+      filter: brightness(1.5);
+    }
+
+    .image-section {
+      flex: 1;
+      perspective: 1000px;
+    }
+
+    .image-section img {
+      max-width: 100%;
+      max-height: 500px;
+      border-radius: 16px;
+      transition: transform 0.5s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .image-section:hover img {
+      transform: rotateY(10deg) rotateX(10deg);
+    }
+
+    .toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 10px #000;
+    }
+
+    #cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #f43f5e;
+      border-radius: 50%;
+      position: absolute;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .text-content h1 {
+        font-size: 2.5rem;
+      }
+    }
+
+    #preloader {
+      background: #0f172a;
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      animation: pulse 1s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    .background-music {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background: #0f172a;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+  
+</head>
+<body>
+
+<div id="preloader">Loading Vivek's World...</div>
+
+<div class="container" data-aos="fade-up">
+  <div class="text-content">
+    <h1>Hi, I’m Vivek Dubey</h1>
+    <p id="dynamicGreeting"></p>
+    <p>I build full-stack web experiences that blend brains with beauty</p>
+    <div id="typing"></div>
+    <div id="quote"></div>
+    <div class="buttons">
+      <button class="view-btn" onclick="viewProjects()">View Projects</button>
+      <button class="resume-btn" onclick="downloadResume()">Download Resume</button>
+    </div>
+    <button class="hire-btn" onclick="hireMe()">Hire Me</button>
+    <div class="tech-stack">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/html5.svg" alt="HTML">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/css3.svg" alt="CSS">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/javascript.svg" alt="JS">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/react.svg" alt="React">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/nodedotjs.svg" alt="Node.js">
+    </div>
+  </div>
+  <div class="image-section">
+    <img src="vivek1.png" alt="Vivek">
+  </div>
+</div>
+
+<div id="cursor"></div>
+<button class="toggle" onclick="toggleTheme()">Toggle Mode</button>
+<button class="background-music" onclick="toggleMusic()">Play/Pause Music</button>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+
+  document.onreadystatechange = () => {
+    if (document.readyState === "complete") {
+      document.getElementById("preloader").style.display = "none";
+    }
+  };
+
+  function viewProjects() {
+    window.location.href = "https://github.com/Vivekkk-1?tab=repositories";
+  }
+  function downloadResume() {
+    window.location.href = "resume.pdf";
+  }
+  function hireMe() {
+    window.location.href = "mailto:vivekdubey5960@gmail.com?subject=Hiring Inquiry&body=Hi Vivek,";  
+  }
+
+  const texts = ["Web Developer", "UI/UX Lover", "Problem Solver","Creative","Web Developer,UI/UX Lover,Problem Solver,Creative"];
+  let i = 0, j = 0, isDeleting = false;
+
+  function typeEffect() {
+    let current = texts[i];
+    document.getElementById("typing").innerText = current.slice(0, j);
+    if (!isDeleting) {
+      j++;
+      if (j > current.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1000);
+        return;
+      }
+    } else {
+      j--;
+      if (j === 0) {
+        isDeleting = false;
+        i = (i + 1) % texts.length;
+      }
+    }
+    setTimeout(typeEffect, isDeleting ? 60 : 100);
+  }
+  typeEffect();
+
+  const quotes = [
+    "“Code is like humor. When you have to explain it, it’s bad.”",
+    "“Make it work, make it right, make it fast.”",
+    "“First, solve the problem. Then, write the code.”",
+    "“Learning never exhausts the mind, it only ignites it.”",
+    "“The best way to predict the future is to invent it.”",
+    "“It’s not a bug, it’s feature.”",
+    "“Code never lies, comments sometimes do.”"    
+  ];
+  let q = 0;
+  setInterval(() => {
+    document.getElementById("quote").innerText = quotes[q];
+    q = (q + 1) % quotes.length;
+  }, 4000);
+
+  function toggleTheme() {
+    const root = document.documentElement;
+    if (root.style.getPropertyValue('--bg-color') === '#0f172a') {
+      root.style.setProperty('--bg-color', '#f1f5f9');
+      root.style.setProperty('--text-color', '#0f172a');
+      root.style.setProperty('--card-color', 'rgba(0, 0, 0, 0.05)');
+    } else {
+      root.style.setProperty('--bg-color', '#0f172a');
+      root.style.setProperty('--text-color', '#ffffff');
+      root.style.setProperty('--card-color', 'rgba(255, 255, 255, 0.05)');
+    }
+  }
+
+  let music = new Audio('music.mp3');
+  let isMusicPlaying = false;
+
+  // Function to toggle music play/pause
+  function toggleMusic() {
+    if (isMusicPlaying) {
+      music.pause();
+    } else {
+      music.play();
+    }
+    isMusicPlaying = !isMusicPlaying;
+  }
+
+  // Play music automatically when the page loads
+  window.onload = function() {
+    music.play();
+    isMusicPlaying = true;  // Set the flag to true since music is now playing
+  };
+
+  document.addEventListener("mousemove", e => {
+    const cursor = document.getElementById("cursor");
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+  });
+
+  const hour = new Date().getHours();
+  const greeting = document.getElementById("dynamicGreeting");
+  if (hour < 12) {
+    greeting.innerText = "Good Morning! Let's build something epic!";
+  } else if (hour < 18) {
+    greeting.innerText = "Good Afternoon! Keep coding with energy!";
+  } else {
+    greeting.innerText = "Good Evening! Time to shine brighter!";
+  }
+</script>
+</body>
+</html>
