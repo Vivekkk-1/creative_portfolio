@@ -33,6 +33,10 @@ This portfolio is a living canvas where I showcase who I am, what I build, and h
 - Google Fonts (Inter)
 - Simple Icons CDN for Tech Logos
 
+## 🚀 Live Demo
+
+👉 [Click here to explore the live site](https://vivekkk-1.github.io/creative_portfolio/)
+
 
 ## ⚙️ How to Use
 
